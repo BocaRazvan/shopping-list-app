@@ -1,0 +1,163 @@
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulsate-btn {
+  animation: pulsate 2s infinite ease-in-out;
+  background: linear-gradient(135deg, #fe218b, #21b0fe);
+  border: none; // Removes the default border so the gradient blends cleanly
+
+  // Optional: keeps the nice hover effect looking good with gradients
+  &:hover {
+    background: linear-gradient(135deg, darken(#fe218b, 10%), darken(#21b0fe, 10%));
+  }
+}
+
+@keyframes colorCycle {
+  0% {
+    color: var(--bs-danger); /* Starts red */
+  }
+  50% {
+    color: #fed700; /* Transitions to your secondary/yellow color */
+  }
+  100% {
+    color: var(--bs-danger); /* Loops back to red */
+  }
+}
+
+.pulsate-error {
+  animation: colorCycle 1s infinite ease-in-out;
+}
+
+@keyframes typing {
+  0% {
+    width: 0ch;
+  }
+  30% {
+    width: 27ch; /* Types out the full 33 characters */
+  }
+  70% {
+    width: 27ch; /* Holds the full text on screen */
+  }
+  100% {
+    width: 0ch; /* Erases back to 0 */
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid black;
+  animation:
+    typing 6s steps(33, end) infinite,
+    blink-caret 0.75s step-end infinite;
+  max-width: 100%;
+}
+
+.form-control.input-active {
+  background-color: var(--bs-secondary) !important;
+  color: var(--bs-dark); // Ensures text remains readable
+}
+
+#loadingOverlay {
+  position: fixed;
+  top: 25%;
+  left: 2.5%;
+  width: 95%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.loading-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: $primary;
+  animation: text-pulse 1s ease-in-out infinite;
+}
+
+@keyframes text-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+body.loading .page-content {
+  filter: blur(8px);
+  transition: filter 0.3s ease;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-10px);
+  }
+  40%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+.pulsate-btn:hover {
+  filter: brightness(1.1);
+  transition: filter 0.2s ease;
+}
+
+#togglePassword:hover {
+  filter: brightness(0.5);
+  transition: filter 0.2s ease;
+}

@@ -1,0 +1,31 @@
+.btn:disabled {
+  opacity: 0.4;
+  filter: grayscale(90%);
+}
+
+@keyframes row-flash {
+  from {
+    background-color: #2a2203; // a clearly visible yellow
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.row-highlight td {
+  animation: row-flash 2s ease-out;
+}
+
+// Default background for table body cells
+#itemsTable tbody td {
+  background-color: var(--bs-info-bg-subtle);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td {
+  background-color: var(--bs-secondary-bg-subtle) !important;
+}
+
+#itemsTable td,
+#itemsTable th {
+  border: 1px solid var(--bs-dark);
+}

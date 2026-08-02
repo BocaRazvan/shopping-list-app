@@ -1,0 +1,22 @@
+// 1. Your custom colors MUST load first
+@import "../scss/variables";
+@import "../scss/login";
+@import "../scss/index";
+@import "../scss/newList";
+@import "../scss/viewLists";
+
+$font-family-base: "Inter", sans-serif;
+$headings-font-family: "Poppins", sans-serif;
+$headings-font-weight: 700;
+
+// 2. Load all of Bootstrap (it will see your colors and auto-generate everything)
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+  visibility: hidden;
+}
+
+body.auth-checked {
+  visibility: visible;
+}

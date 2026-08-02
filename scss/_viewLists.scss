@@ -1,0 +1,32 @@
+.card.list-card {
+  background-color: var(--bs-info-bg-subtle);
+  border-radius: 1rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  opacity: 0;
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.list-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.item-bought {
+  background-color: var(--bs-gray-500) !important;
+  transition: background-color 0.4s ease;
+}
+
+.item-bought .item-name {
+  text-decoration: line-through;
+  color: var(--bs-success-emphasis);
+}
+
+.item-checkbox {
+  transition: transform 0.2s ease;
+}
+
+.item-checkbox:checked {
+  transform: scale(1.3);
+}
