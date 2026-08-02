@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 @keyframes pulsate {
   0% {
     transform: scale(1);

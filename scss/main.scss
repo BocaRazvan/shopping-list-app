@@ -11,7 +11,6 @@ $headings-font-weight: 700;
 
 // 2. Load all of Bootstrap (it will see your colors and auto-generate everything)
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 body {
   visibility: hidden;
