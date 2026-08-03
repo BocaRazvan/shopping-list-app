@@ -18,7 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
   </head>
 
-  <body class="d-flex flex-column min-vh-100 auth-checked">
+  <body class="d-flex flex-column auth-checked">
     <div id="loadingOverlay" class="d-none">
       <span class="loading-text">Please wait...</span>
     </div>
@@ -45,15 +45,22 @@
       </div>
     </section>
 
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+      <div class="row justify-content-center w-100">
+        <div class="col-12 col-md-8 col-lg-5">
+          <h1 class="text-center fw-bold display-5 gradient-text" data-i18n="login_title">
+            Create lists, add items, and more!
+          </h1>
+        </div>
+      </div>
+    </div>
+
     <main
       class="container flex-grow-1 d-flex flex-column justify-content-center align-items-center page-content"
     >
       <div class="row justify-content-center w-100">
         <div class="col-12 col-md-8 col-lg-5 login-card">
           <form id="loginForm">
-            <h1 class="text-center fw-bold display-5 gradient-text" data-i18n="login_title">
-              Create lists, add items, and more!
-            </h1>
             <p class="text-muted text-center">
               <span class="typewriter-text" data-i18n="login_subtitle"
                 >Enter your credentials to log in.</span
