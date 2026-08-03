@@ -19,7 +19,7 @@
   </head>
 
   <body class="d-flex flex-column">
-    <section class="d-flex container py-2 justify-content-end border-bottom py-2 mb-3">
+    <section class="d-flex container py-2 justify-content-end border-bottom py-2 mb-3 bg-body-tertiary">
       <div class="d-flex gap-2 align-items-center">
         <small id="userInfo" class="text-muted mb-2"></small>
 
@@ -125,38 +125,51 @@
       </form>
     </main>
 
-    <div class="offcanvas offcanvas-bottom h-50" tabindex="-1" id="saveListOffcanvas">
+    <div class="offcanvas offcanvas-bottom h-75" tabindex="-1" id="saveListOffcanvas">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" data-i18n="save_your_list">Save Your List</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
       </div>
       <div class="offcanvas-body">
-        <div class="mb-3">
-          <label for="listName" class="form-label" data-i18n="list_name">List Name</label>
-          <input type="text" class="form-control bg-secondary-subtle" id="listName" required />
-        </div>
-        <div class="mb-3">
-          <label for="storeLocation" class="form-label" data-i18n="store">Store</label>
-          <select class="form-select" id="storeLocation" required>
-            <option value="" selected disabled>Choose...</option>
-            <option value="Metro">Metro</option>
-            <option value="Kaufland">Kaufland</option>
-            <option value="Carrefour">Carrefour</option>
-            <option value="Lidl">Lidl</option>
-            <option value="Profi">Profi</option>
-            <option value="Profi">Other...</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="listDate" class="form-label" data-i18n="date">Date</label>
-          <input type="date" class="form-control bg-secondary-subtle" id="listDate" disabled required />
-        </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+              <div class="mb-3">
+                <label for="listName" class="form-label" data-i18n="list_name">List Name</label>
+                <input type="text" class="form-control bg-secondary-subtle" id="listName" required />
+              </div>
+              <div class="mb-3">
+                <label for="storeLocation" class="form-label" data-i18n="store">Store</label>
+                <select class="form-select" id="storeLocation" required>
+                  <option value="" selected disabled>Choose...</option>
+                  <option value="Metro">Metro</option>
+                  <option value="Kaufland">Kaufland</option>
+                  <option value="Carrefour">Carrefour</option>
+                  <option value="Lidl">Lidl</option>
+                  <option value="Profi">Profi</option>
+                  <option value="Profi">Other...</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="listDate" class="form-label" data-i18n="date">Date</label>
+                <input type="date" class="form-control bg-secondary-subtle" id="listDate" disabled required />
+              </div>
 
-        <div class="d-flex gap-2 mt-4">
-          <button type="button" class="btn btn-secondary w-50" data-bs-dismiss="offcanvas" data-i18n="cancel">
-            Cancel
-          </button>
-          <button type="button" id="confirmSaveBtn" class="btn btn-success w-50" data-i18n="ok">OK</button>
+              <div class="d-flex gap-2 mt-4">
+                <button
+                  type="button"
+                  class="btn btn-secondary w-50"
+                  data-bs-dismiss="offcanvas"
+                  data-i18n="cancel"
+                >
+                  Cancel
+                </button>
+                <button type="button" id="confirmSaveBtn" class="btn btn-success w-50" data-i18n="ok">
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -174,7 +187,7 @@
       </div>
     </section>
 
-    <footer class="container pb-1 border-top page-content mt-3">
+    <footer class="container pb-1 border-top page-content mt-3 bg-body-tertiary">
       <div class="container text-center">
         <p class="text-muted mb-1">2026 Shopping List App.</p>
         <p class="small text-muted mb-0">~~ByteBralin~~</p>
