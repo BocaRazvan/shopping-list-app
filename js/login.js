@@ -1,5 +1,9 @@
 import { auth } from "./firebaseConfig.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { t } from "./i18nHelper.js";
 
 const loginForm = document.getElementById("loginForm");
 const loginError = document.getElementById("loginError");
@@ -7,6 +11,7 @@ const loginEmail = document.getElementById("loginEmail");
 const loginPassword = document.getElementById("loginPassword");
 const togglePassword = document.getElementById("togglePassword");
 const toggleIcon = document.getElementById("toggleIcon");
+const forgotPasswordLink = document.getElementById("forgotPasswordLink");
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -31,9 +36,9 @@ loginForm.addEventListener("submit", async (e) => {
     console.error("Login error:", error);
 
     if (error.code === "auth/too-many-requests") {
-      loginError.textContent = "Too many failed attempts. Please wait a few minutes before trying again.";
+      loginError.textContent = t("too_many_requests");
     } else {
-      loginError.textContent = "Invalid email or password.";
+      loginError.textContent = t("invalid_credentials");
     }
     loginError.classList.remove("d-none");
 
@@ -47,6 +52,7 @@ loginForm.addEventListener("submit", async (e) => {
     setTimeout(() => loginForm.classList.remove("shake"), 400);
   }
 });
+
 // Helper function to handle focus & blur
 const handleInputFocus = (input) => {
   input.classList.add("input-active");
@@ -72,26 +78,21 @@ togglePassword.addEventListener("click", () => {
   toggleIcon.classList.toggle("bi-eye-slash");
 });
 
-import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const forgotPasswordLink = document.getElementById("forgotPasswordLink");
-
+// Forgot password
 forgotPasswordLink.addEventListener("click", async (e) => {
   e.preventDefault();
 
   const email = loginEmail.value.trim();
   if (!email) {
-    alert("Please enter your email address first, then click 'Forgot password?'");
+    alert(t("enter_email_first"));
     return;
   }
 
   try {
     await sendPasswordResetEmail(auth, email);
-    alert(
-      "A password reset email has been sent, if an account with that email exists. Check your spam folder if you don't see it in your inbox.",
-    );
+    alert(t("reset_email_sent"));
   } catch (error) {
     console.error("Password reset error:", error);
-    alert("Something went wrong. Please try again.");
+    alert(t("reset_email_error"));
   }
 });

@@ -4,6 +4,7 @@ import {
   doc,
   runTransaction,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { t } from "./i18nHelper.js";
 
 const confirmSaveBtn = document.getElementById("confirmSaveBtn");
 
@@ -13,7 +14,7 @@ confirmSaveBtn.addEventListener("click", async () => {
   const listDate = document.getElementById("listDate").value;
 
   if (!listName || !storeLocation || !listDate) {
-    alert("Please fill in the list name, store, and date before saving.");
+    alert(t("fill_save_fields"));
     return;
   }
 
@@ -52,14 +53,14 @@ confirmSaveBtn.addEventListener("click", async () => {
       transaction.set(counterRef, { count: currentCount + 1 }, { merge: true });
     });
 
-    alert("List saved successfully!");
+    alert(t("list_saved"));
     window.location.href = "index.html";
   } catch (error) {
     if (error.message === "DAILY_LIMIT_REACHED") {
-      alert("The daily limit of 30 new lists has been reached. Please try again tomorrow.");
+      alert(t("daily_limit_reached"));
     } else {
       console.error("Error saving list:", error);
-      alert("Something went wrong while saving. Check the console for details.");
+      alert(t("save_error"));
     }
   }
 });

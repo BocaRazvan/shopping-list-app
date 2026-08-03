@@ -1,3 +1,4 @@
+import { t } from "./i18nHelper.js";
 const addItemBtn = document.getElementById("addItemBtn");
 const itemsTableBody = document.getElementById("itemsTableBody");
 
@@ -13,13 +14,13 @@ addItemBtn.addEventListener("click", () => {
   const photo = photoInput.value.trim();
 
   if (!name || !qty) {
-    alert("Please fill in both Name and Quantity.");
+    alert(t("fill_name_qty"));
     return;
   }
 
   const currentItemCount = itemsTableBody.querySelectorAll("tr").length;
   if (currentItemCount >= 30) {
-    alert("This list has reached the maximum of 30 items.");
+    alert(t("max_items_reached"));
     return;
   }
   itemCount++;
@@ -110,7 +111,7 @@ function saveEditMode(row) {
   const newPhoto = photoInput.value.trim();
 
   if (!newName || !newQty) {
-    alert("Name and Quantity cannot be empty.");
+    alert(t("name_qty_empty"));
     return;
   }
 
@@ -125,8 +126,8 @@ function saveEditMode(row) {
         <i class="bi bi-three-dots-vertical"></i>
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item edit-item" href="#">Edit line</a></li>
-        <li><a class="dropdown-item delete-item text-danger" href="#">Delete line</a></li>
+        <li><a class="dropdown-item edit-item" href="#">${t("edit_line")}</a></li>
+        <li><a class="dropdown-item delete-item text-danger" href="#">${t("delete_line")}</a></li>
       </ul>
     </div>
   `;

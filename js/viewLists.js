@@ -8,6 +8,7 @@ import {
   orderBy,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { t } from "./i18nHelper.js";
 
 const listsContainer = document.getElementById("listsContainer");
 
@@ -37,7 +38,7 @@ async function loadLists() {
       <p class="mb-1 text-dark small"><strong>${list.storeLocation}</strong></p>
       <div class="text-start">
         <span class="badge bg-secondary-subtle text-primary-emphasis text-wrap d-inline-block text-start">
-          Created by ${list.createdBy || "Unknown"} at ${list.createdAt ? new Date(list.createdAt.seconds * 1000).toLocaleString() : "Unknown time"}
+          ${t("created_by")} ${list.createdBy || "Unknown"} ${t("at_time")} ${list.createdAt ? new Date(list.createdAt.seconds * 1000).toLocaleString() : "Unknown time"}
         </span>
       </div>
     </div>
@@ -52,7 +53,7 @@ async function loadLists() {
     <input type="checkbox" class="form-check-input flex-shrink-0 item-checkbox" ${item.bought ? "checked" : ""}>
     <span class="item-name flex-grow-1 text-break">
       ${item.name} (${item.quantity})
-      ${item.photo ? `<a href="#" class="view-photo ms-2" data-photo="${item.photo}">View</a>` : ""}
+      ${item.photo ? `<a href="#" class="view-photo ms-2" data-photo="${item.photo}">${t("view_photo")}</a>` : ""}
     </span>
     <div class="d-flex gap-1">
       <button type="button" class="btn btn-outline-primary btn-sm edit-item">
@@ -84,7 +85,7 @@ listsContainer.addEventListener("click", async (e) => {
   const confirmEditItemBtn = e.target.closest(".confirm-edit-item");
 
   if (deleteListBtn) {
-    const confirmDelete = confirm("Are you sure you want to delete this list?");
+    const confirmDelete = confirm(t("confirm_delete_list"));
     if (!confirmDelete) return;
 
     try {
@@ -92,7 +93,7 @@ listsContainer.addEventListener("click", async (e) => {
       loadLists();
     } catch (error) {
       console.error("Error deleting list:", error);
-      alert("Something went wrong while deleting.");
+      alert(t("delete_list_error"));
     }
     return;
   }
@@ -135,7 +136,7 @@ listsContainer.addEventListener("click", async (e) => {
     const newPhoto = li.querySelector(".edit-photo-input").value.trim();
 
     if (!newName || !newQty) {
-      alert("Name and Quantity cannot be empty.");
+      alert(t("name_qty_empty"));
       return;
     }
 
@@ -149,7 +150,7 @@ listsContainer.addEventListener("click", async (e) => {
       loadLists();
     } catch (error) {
       console.error("Error updating item:", error);
-      alert("Something went wrong while saving the item.");
+      alert(t("save_item_error"));
     }
     return;
   }
@@ -160,7 +161,7 @@ listsContainer.addEventListener("click", async (e) => {
     const listId = ul.dataset.listId;
     const itemIndex = parseInt(li.dataset.index, 10);
 
-    const confirmDelete = confirm("Delete this item?");
+    const confirmDelete = confirm(t("confirm_delete_item"));
     if (!confirmDelete) return;
 
     const docSnap = currentSnapshot.docs.find((d) => d.id === listId);
@@ -172,7 +173,7 @@ listsContainer.addEventListener("click", async (e) => {
       loadLists();
     } catch (error) {
       console.error("Error deleting item:", error);
-      alert("Something went wrong while deleting the item.");
+      alert(t("delete_item_error"));
     }
     return;
   }
@@ -202,7 +203,7 @@ listsContainer.addEventListener("change", async (e) => {
       await updateDoc(doc(db, "lists", listId), { items: updatedItems });
     } catch (error) {
       console.error("Error updating item status:", error);
-      alert("Something went wrong while updating the item.");
+      alert(t("update_item_error"));
       li.classList.toggle("item-bought", !isChecked);
       e.target.checked = !isChecked;
     }
@@ -216,4 +217,8 @@ document.body.addEventListener("click", (e) => {
     document.getElementById("photoModalImg").src = photoLink.dataset.photo;
     bootstrap.Modal.getOrCreateInstance(document.getElementById("photoModal")).show();
   }
+});
+
+document.addEventListener("languageChanged", () => {
+  loadLists();
 });

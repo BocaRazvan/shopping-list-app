@@ -1,5 +1,6 @@
 import { auth } from "./firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { t } from "./i18nHelper.js";
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
@@ -11,7 +12,7 @@ onAuthStateChanged(auth, (user) => {
 
   const userInfo = document.getElementById("userInfo");
   if (userInfo) {
-    userInfo.textContent = `Logged in as ${user.email}`;
+    userInfo.textContent = `${t("logged_in_as")} ${user.email}`;
   }
 });
 

@@ -15,6 +15,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     />
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
   </head>
 
   <body class="d-flex flex-column min-vh-100 auth-checked">
@@ -22,12 +23,27 @@
       <span class="loading-text">Please wait...</span>
     </div>
 
-    <header class="container d-flex align-items-center justify-content-center text-center page-content">
-      <div class="d-flex align-items-center">
-        <!-- Your SVG Logo -->
-        <img src="assets/img/logo.svg" alt="Shopping List Logo" style="width: 180px; height: 180px" />
+    <section class="d-flex container py-2 justify-content-end mt-3 pe-4 mb-auto">
+      <div class="d-flex gap-2 align-items-center">
+        <small id="userInfo" class="text-muted mb-2"></small>
+        <button
+          type="button"
+          id="darkModeToggle"
+          class="btn btn-lg btn-outline-info"
+          title="Toggle dark mode"
+        >
+          <i class="bi bi-lightbulb"></i>
+        </button>
+        <select
+          id="languageSelector"
+          class="form-select form-select-lg w-auto align-self-center"
+          title="Language"
+        >
+          <option value="en">EN</option>
+          <option value="ro">RO</option>
+        </select>
       </div>
-    </header>
+    </section>
 
     <main
       class="container flex-grow-1 d-flex flex-column justify-content-center align-items-center page-content"
@@ -35,16 +51,20 @@
       <div class="row justify-content-center w-100">
         <div class="col-12 col-md-8 col-lg-5 login-card">
           <form id="loginForm">
-            <h1 class="text-center fw-bold display-5">Create lists, add items, and more!</h1>
+            <h1 class="text-center fw-bold display-5 gradient-text" data-i18n="login_title">
+              Create lists, add items, and more!
+            </h1>
             <p class="text-muted text-center">
-              <span class="typewriter-text">Enter your credentials to log in.</span>
+              <span class="typewriter-text" data-i18n="login_subtitle"
+                >Enter your credentials to log in.</span
+              >
             </p>
             <div class="mb-2">
-              <label for="loginEmail" class="form-label">Email</label>
+              <label for="loginEmail" class="form-label" data-i18n="email">Email</label>
               <input type="email" class="form-control bg-secondary-subtle" id="loginEmail" required />
             </div>
             <div class="mb-5">
-              <label for="loginPassword" class="form-label">Password</label>
+              <label for="loginPassword" class="form-label" data-i18n="password">Password</label>
               <div class="input-group">
                 <input type="password" class="form-control bg-secondary-subtle" id="loginPassword" required />
                 <button
@@ -58,10 +78,9 @@
             </div>
             <button type="submit" class="btn btn-primary btn-lg w-100 fw-bolder pulsate-btn">
               <span class="d-inline-block">
-                <i class="bi bi-box-arrow-in-right me-2 fs-3 me-3"></i>Log In
+                <i class="bi bi-box-arrow-in-right me-2 fs-3 me-3"></i><span data-i18n="log_in">Log In</span>
               </span>
             </button>
-
             <div class="position-relative">
               <p
                 id="loginError"
@@ -71,15 +90,20 @@
           </form>
         </div>
       </div>
-
       <div class="d-flex flex-column align-items-end container mt-3">
         <div class="col-12 col-md-8 col-lg-5">
-          <a href="#" id="forgotPasswordLink" class="text-decoration-none text-warning">Forgot password?</a>
+          <a
+            href="#"
+            id="forgotPasswordLink"
+            class="text-decoration-none text-warning"
+            data-i18n="forgot_password"
+            >Forgot password?</a
+          >
         </div>
       </div>
     </main>
 
-    <footer class="container pb-2 border-top border-secondary page-content mt-auto">
+    <footer class="container pb-1 border-top page-content mt-auto">
       <div class="container text-center">
         <p class="text-muted mb-1">2026 Shopping List App.</p>
         <p class="small text-muted mb-0">~~ByteBralin~~</p>
@@ -88,5 +112,7 @@
 
     <script type="module" src="js/firebaseConfig.js"></script>
     <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/darkMode.js"></script>
+    <script type="module" src="js/languageSelector.js"></script>
   </body>
 </html>
